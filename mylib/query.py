@@ -9,7 +9,9 @@ def query():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM GroceryDB")
     print("Top 5 rows of the GroceryDB table:")
-    print(cursor.fetchall())
+    # only pront top 5 rows not all rows
+    for i in range(5):
+        print(cursor.fetchone())
     conn.close()
     return "Success"
 
