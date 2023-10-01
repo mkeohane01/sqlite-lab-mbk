@@ -9,7 +9,7 @@
 
 #### USES
 
-* Run ```bash python main.py``` to run Extract, Load, Query functions 
+* Run ```python main.py``` to run Extract, Load, Query functions 
 * Use crud.py to run Create, Read, Update, or Delete commands on the specified db or data
 * Command Line CRUD uses:
     * Create db: ```python crud.py create --url=raw_data_url --file_path=data_file_path --db_name=DB```
