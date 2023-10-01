@@ -24,7 +24,8 @@ class CRUD():
       4.delete parts of the database based on query'''
     
     # create a databse based on the url, file path, and db name
-    def create(self, url=default_url, file_path=default_file_path, db_name=default_db_name):
+    def create(self, url=default_url, 
+               file_path=default_file_path, db_name=default_db_name):
         # Create
         # Inputs: url, file_path, db_name
         print(f"Creating database...{db_name}")
@@ -32,7 +33,8 @@ class CRUD():
         load(file_path, db_name)
 
     # read the database and print the resulting query
-    def read(self, db=f"{default_db_name}.db", query_str=default_query_str, n_prints=5):
+    def read(self, db=f"{default_db_name}.db", 
+             query_str=default_query_str, n_prints=5):
         # Query
         # Inputs: db, query, n_prints
         print("Querying data...")
