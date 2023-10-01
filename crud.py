@@ -12,14 +12,18 @@ default_url = "https://raw.githubusercontent.com/datacamp/courses-introduction-t
 default_file_path = "data/baseball_data.csv"
 default_db_name = "BaseballDB"
 default_query_str = f"SELECT * FROM {default_db_name}"
-default_update_query = f"UPDATE {default_db_name} SET Weight = WEIGHT * 2 WHERE Team = 'CHC'"
+default_update_query = \
+    f"UPDATE {default_db_name} SET Weight = WEIGHT * 2 WHERE Team = 'CHC'"
 default_delete_query = f"DELETE FROM {default_db_name} WHERE Team = 'CHC'"
 
-
 class CRUD():
-    ''' Class containing functions to create a sqlite3 database
-      read the database through queries, update the database, or delete the database'''
-    # create a databse from a url to a csv, a file path to save the data and a database name
+    ''' Class containing functions to 
+      1.create a sqlite3 database
+      2.read the database through queries
+      3.update the database based on query
+      4.delete parts of the database based on query'''
+    
+    # create a databse based on the url, file path, and db name
     def create(self, url=default_url, file_path=default_file_path, db_name=default_db_name):
         # Create
         # Inputs: url, file_path, db_name
@@ -28,7 +32,7 @@ class CRUD():
         load(file_path, db_name)
 
     # read the database and print the resulting query
-    def read(self, db=f"{default_db_name}.db", query_str="SELECT * FROM BaseballDB", n_prints=5):
+    def read(self, db=f"{default_db_name}.db", query_str=default_query_str, n_prints=5):
         # Query
         # Inputs: db, query, n_prints
         print("Querying data...")
@@ -47,5 +51,6 @@ class CRUD():
         # Inputs: db, query
         print(f"Deleting data... \n based on: {del_query}")
         update(db, del_query)
+
 if __name__ == "__main__":
     fire.Fire(CRUD)
