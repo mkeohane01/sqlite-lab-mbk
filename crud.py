@@ -31,6 +31,7 @@ class CRUD():
         print(f"Creating database...{db_name}")
         extract(url, file_path)
         load(file_path, db_name)
+        return f"{db_name}.db"
 
     # read the database and print the resulting query
     def read(self, db=f"{default_db_name}.db", 
