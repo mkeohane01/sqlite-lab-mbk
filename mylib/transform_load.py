@@ -8,19 +8,26 @@ import csv
 import os
 
 #load the csv file and insert into a new sqlite3 database
-def load(dataset="/workspaces/sqlite-lab-mbk/data/GroceryDB_IgFPro.csv"):
+def load(dataset="data/baseball_data.csv", db_name="BaseballDB"):
     """"Transforms and Loads data into the local SQLite3 database"""
 
-    #prints the full working directory and path
+    # prints the full working directory and path
     print(os.getcwd())
     payload = csv.reader(open(dataset, newline=''), delimiter=',')
-    conn = sqlite3.connect('GroceryDB.db')
+    header = next(payload)
+    # connect to the database
+    conn = sqlite3.connect(f"{db_name}.db")
     c = conn.cursor()
-    c.execute("DROP TABLE IF EXISTS GroceryDB")
-    c.execute("CREATE TABLE GroceryDB (id,general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node)")
-    #insert
-    c.executemany("INSERT INTO GroceryDB VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)", payload)
+    # drop the table if it already exists
+    c.execute(f"DROP TABLE IF EXISTS {db_name}")
+    # create the table using the header from the csv reader
+    c.execute(f"CREATE TABLE {db_name} ({','.join(header)})")
+    # make the ?s align with number of columns
+    question_marks = ["?"] * len(header)
+    question_marks = ",".join(question_marks)
+    # insert the data into the table
+    c.executemany(f"INSERT INTO {db_name} VALUES ({question_marks})", payload)
     conn.commit()
     conn.close()
-    return "GroceryDB.db"
+    return f"{db_name}.db"
 

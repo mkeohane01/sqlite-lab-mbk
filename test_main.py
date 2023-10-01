@@ -3,8 +3,12 @@ Test goes here
 
 """
 
-from mylib.calculator import add
+from mylib.extract import extract
+from mylib.transform_load import load
 
 
-def test_add():
-    assert add(1, 2) == 3
+def test_extract_and_load():
+    extract()
+    db = load()
+    assert db is not None
+    

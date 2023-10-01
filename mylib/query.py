@@ -3,14 +3,12 @@
 import sqlite3
 
 
-def query():
-    """Query the database for the top 5 rows of the GroceryDB table"""
-    conn = sqlite3.connect("GroceryDB.db")
+def query(db="BaseballDB.db", query="SELECT * FROM BaseballDB", n_prints=5):
+    """Query the designated database based on the query string"""
+    conn = sqlite3.connect(db)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM GroceryDB")
-    print("Top 5 rows of the GroceryDB table:")
-    # only pront top 5 rows not all rows
-    for i in range(5):
+    cursor.execute(query)
+    for i in range(n_prints):
         print(cursor.fetchone())
     conn.close()
     return "Success"
