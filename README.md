@@ -6,7 +6,7 @@
 * Fulfils IDS 706 Mini Project 5 using SQLite and command-line tools to perfrom CRUD operations
 * Set up to use any data sets yet default uses a Github baseball set:
     * https://raw.githubusercontent.com/datacamp/courses-introduction-to-python/master/datasets/baseball.csv
-
+* Query Logs can be found at query_log.txt 
 #### USES
 
 * Run ```python main.py``` to run Extract, Load, Query functions 
